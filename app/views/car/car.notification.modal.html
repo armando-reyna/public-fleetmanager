@@ -1,0 +1,38 @@
+<div class="inmodal">
+  <form role="form" name="vm.notificationForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">NOTIFICACIONES</h4>
+    </div>
+    <div class="modal-body">
+
+      <select-validator input-name="notificationInsurance" label="SEGUROS" form="vm.notificationForm" list="vm.timeNotificationList"
+                        model="vm.notification.notificationInsurance" required="true"
+                        option-label="name"></select-validator>
+
+      <select-validator input-name="notificationInfringement" label="INFRACCIONES" form="vm.notificationForm" list="vm.timeNotificationList"
+                        model="vm.notification.notificationInfringement" required="true"
+                        option-label="name"></select-validator>
+
+      <select-validator input-name="notificationCirculationCard" label="TARJETAS DE CIRCULACIÓN" form="vm.notificationForm" list="vm.timeNotificationList"
+                        model="vm.notification.notificationCirculationCard" required="true"
+                        option-label="name"></select-validator>
+
+      <select-validator input-name="notificationVerification" label="VERIFICACIONES" form="vm.notificationForm" list="vm.timeNotificationList"
+                        model="vm.notification.notificationVerification" required="true"
+                        option-label="name"></select-validator>
+
+      <select-validator input-name="notificationOther" label="OTROS" form="vm.notificationForm" list="vm.timeNotificationList"
+                        model="vm.notification.notificationOther" required="true"
+                        option-label="name"></select-validator>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

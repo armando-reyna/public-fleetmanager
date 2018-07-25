@@ -1,0 +1,7 @@
+.idea
+.tmp
+bower_components
+dist
+node_modules
+styles
+package-lock.json

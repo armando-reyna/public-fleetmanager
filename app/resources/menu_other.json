@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Inicio",
+    "ngClass": "",
+    "href": "index.html",
+    "iClass": "fa fa-home",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Vehículos",
+    "ngClass": "",
+    "uiSref": "index.car",
+    "iClass": "fa fa-car",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  }
+]

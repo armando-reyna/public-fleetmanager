@@ -1,0 +1,36 @@
+<div class="inmodal">
+    <form role="form" name="vm.torageForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Almacenaje</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.torage.vehicle.id" disabled><br>
+
+            <input-validator input-name="name" label="NOMBRE" form="vm.torageForm" model="vm.torage.name"
+                             required="true"
+                             min-length="2" max-length="50"></input-validator>
+
+            <date-validator input-name="startDate" label="FECHA DE ENTRADA" form="vm.torageForm"
+                            model="vm.torage.startDate"
+                            required="true"></date-validator>
+
+            <date-validator input-name="endDate" label="FECHA DE SALIDA" form="vm.torageForm"
+                            model="vm.torage.endDate"
+                            required="true"></date-validator>
+
+            <input-validator input-name="cost" label="COSTO" form="vm.torageForm" model="vm.torage.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

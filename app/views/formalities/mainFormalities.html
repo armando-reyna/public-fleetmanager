@@ -1,0 +1,130 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2 class="link" ng-click="vm.clearSelectedCubicle()">
+            <a ui-sref="index.car">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                Vehículos
+            </a>
+        </h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.car">Vehículos</a>
+            </li>
+            <li>
+                <b>No. Económico {{vm.car.id}}</b>
+            </li>
+            <li class="active">
+                Trámites
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+
+        <div class="col-lg-12 animated fadeInRight">
+
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title" ng-show="vm.name">
+                    <h4><i class="{{ vm.stateData.iClass }} fa-2x" aria-hidden="true"></i> {{ vm.name }}</h4>
+                </div>
+                <div class="ibox-title" ng-show="vm.noInvoice">
+                    <h4><i class="{{ vm.stateData.iClass }} fa-2x" aria-hidden="true"></i> {{ vm.noInvoice}}</h4>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.torage || vm.formalities(CONSTANTS.FORMALITIES.TORAGE)" ng-disabled="vm.user.torage == false">
+                                <label class="text-center">Almacenajes</label><br>
+                                <img src="img/tramites/car-in-garage.png" alt="Almacenajes" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.insurance || vm.formalities(CONSTANTS.FORMALITIES.INSURANCE)" ng-disabled="vm.user.insurance == false">
+                                <label class="text-center">Aseguradoras</label><br>
+                                <img src="img/tramites/car-with-medicine.png" alt="Aseguradoras" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.maintenance || vm.formalities(CONSTANTS.FORMALITIES.MAINTENANCE)" ng-disabled="vm.user.maintenance == false">
+                                <label class="text-center">Mantenimientos</label><br>
+                                <img src="img/tramites/car-service.png" alt="Mantenimientos" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.cleaning || vm.formalities(CONSTANTS.FORMALITIES.CLEANING)" ng-disabled="vm.user.cleaning == false">
+                                <label class="text-center">Limpiezas</label><br>
+                                <img src="img/tramites/car-washing-machine.png" alt="Limpiezas" height="60" width="60">
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="spacer-md"></div>
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.infringement || vm.formalities(CONSTANTS.FORMALITIES.INFRINGEMENT)" ng-disabled="vm.user.infringement == false">
+                                <label class="text-center">Infracciones</label><br>
+                                <img src="img/tramites/towing-a-car.png" alt="Infracciones" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.circulationCard || vm.formalities(CONSTANTS.FORMALITIES.CIRCULATIONCARD)" ng-disabled="vm.user.circulationCard == false">
+                                <label class="text-center">Tarjetas de circulación</label><br>
+                                <img src="img/tramites/checked-car.png" alt="Tarjetas de circulación" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.chargeGas || vm.formalities(CONSTANTS.FORMALITIES.GASCARD)" ng-disabled="vm.user.chargeGas == false">
+                                <label class="text-center">Control de Combustible</label><br>
+                                <img src="img/tramites/car-at-gas-station.png" alt="Control de Combustible" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.chargePike || vm.formalities(CONSTANTS.FORMALITIES.PIKECARD)" ng-disabled="vm.user.chargePike == false">
+                                <label class="text-center">Control de Peaje</label><br>
+                                <img src="img/tramites/barrier-and-car.png" alt="Control de Peaje" height="60" width="60">
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="spacer-md"></div>
+
+                    <div class="row space-left-20">
+
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.tenure || vm.formalities(CONSTANTS.FORMALITIES.TENURE)" ng-disabled="vm.user.tenure == false">
+                                <label class="text-center">Tenencias</label><br>
+                                <img src="img/tramites/man-with-car.png" alt="Tenencias" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.verification || vm.formalities(CONSTANTS.FORMALITIES.VERIFICATION)" ng-disabled="vm.user.verification == false">
+                                <label class="text-center">Verificaciones</label><br>
+                                <img src="img/tramites/car-pollution.png" alt="Verificaciones" height="60" width="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-default btn-100" ng-click="!vm.user.other || vm.formalities(CONSTANTS.FORMALITIES.OTHER)" ng-disabled="vm.user.other == false">
+                                <label class="text-center">Otros</label><br>
+                                <img src="img/tramites/two-cars-in-line.png" alt="Otros" height="60" width="60">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="spacer-md"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

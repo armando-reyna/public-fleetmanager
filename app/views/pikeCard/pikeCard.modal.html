@@ -1,0 +1,33 @@
+<div class="inmodal">
+    <form role="form" name="vm.pikeCardForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Tarjeta Peaje</h4>
+        </div>
+        <div class="modal-body">
+
+            <select-validator input-name="pikeCardType" label="TIPO DE TARJETA" form="vm.pikeCardForm" list="vm.pikeCardTypeList"
+                              model="vm.pikeCard.pikeCardType" required="true"
+                              option-label="name"></select-validator>
+
+            <input-validator input-name="folio" label="FOLIO" form="vm.pikeCardForm" model="vm.pikeCard.folio" required="true"
+                             min-length="4" max-length="8" restrict="alphanumeric"></input-validator>
+
+            <date-validator input-name="date" label="FECHA DE CONTRATACIÓN" form="vm.pikeCardForm"
+                            model="vm.pikeCard.date"
+                            required="true"></date-validator>
+
+            <input-validator input-name="cost" label="COSTO" form="vm.pikeCardForm" model="vm.pikeCard.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

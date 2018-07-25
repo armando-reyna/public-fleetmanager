@@ -1,0 +1,138 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2 class="link" ng-click="vm.clearSelectedCubicle()">
+      <a ui-sref="{{vm.stateData.state}}">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        {{ vm.stateData.pageTitle }}
+      </a>
+    </h2>
+
+    <ol class="breadcrumb" ng-if="vm.checkOriginCar">
+      <li>
+        <a ui-sref="{{vm.stateData.state}}">{{ vm.stateData.pageTitle }}</a>
+      </li>
+      <li>
+        <b>No. Económico {{vm.car.id}}</b>
+      </li>
+      <li class="active">
+        Nube
+      </li>
+    </ol>
+
+    <ol class="breadcrumb" ng-if="vm.checkOriginFormalities">
+      <li>
+        <a ui-sref="index.car">Vehículos</a>
+      </li>
+      <li>
+        <b>No. Económico {{vm.car.id}}</b>
+      </li>
+      <li class="active">
+        <a ui-sref="index.mainFormalities">Trámites</a>
+      </li>
+      <li class="active">
+        <a ui-sref="{{vm.stateData.state}}">{{ vm.stateData.pageTitle }}</a>
+      </li>
+      <li class="active">
+        Nube
+      </li>
+    </ol>
+
+    <ol class="breadcrumb" ng-if="vm.checkOriginCardsMonitoring">
+      <li>
+        <a ui-sref="{{vm.stateData.state}}">{{ vm.stateData.pageTitle }}</a>
+      </li>
+      <li class="active">
+        Nube
+      </li>
+    </ol>
+
+  </div>
+  <div class="col-lg-2">
+
+  </div>
+</div>
+<div class="wrapper wrapper-content">
+  <div class="row animated fadeInRight">
+
+    <div class="col-lg-12 animated fadeInRight">
+
+      <div class="ibox float-e-margins">
+
+        <div class="ibox-title" ng-show="vm.name">
+          <h4><i class="{{ vm.stateData.iClass }} fa-2x" aria-hidden="true"></i>&emsp; {{ vm.name }}</h4>
+        </div>
+
+        <div class="ibox-content">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="file-manager">
+                <form name="uploadForm" class="form-horizontal" role="form">
+                  <div class="hr-line-dashed"></div>
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <button class="col-sm-12 btn btn-primary" name="file" ngf-multiple="true" type="file"
+                              ngf-select="vm.uploadFile($files)">Selecciona un archivo
+                      </button>
+                    </div>
+                  </div>
+                  <div class="hr-line-dashed"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 animated fadeInRight">
+
+              <div class="file-box" ng-show="vm.files.length == 0">
+                <div class="file-box">
+                  <div class="file">
+                    <span class="corner"></span>
+                    <div class="icon">
+                      <i class="fa fa-folder-open-o"></i>
+                    </div>
+                    <div class="file-name">
+                      No hay archivos guardados.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="file-box" ng-repeat="file in vm.files track by $index" ng-hide="vm.files.length == 0">
+                <div class="file">
+
+                  <div class="row">
+                    <div class="col-lg-1 col-lg-offset-9">
+                      <a class="fa fa-times" href="" ng-click="vm.deleteFile(file);" title="Eliminar"/>
+                    </div>
+                  </div>
+
+                  <a ng-click="vm.openFile(vm.files, $index)">
+                    <span class="corner"></span>
+
+                    <div class="icon" ng-if="!vm.isImage(file.name)">
+                      <i class="fa fa-file"></i>
+                    </div>
+                    <div class="image" ng-if="vm.isImage(file.name)">
+                      <img alt="image" class="img-responsive" ng-src="{{ vm.filesPath + file.id}}">
+                    </div>
+
+                    <div class="file-name">
+                      <span ng-if="file.originalName">{{file.originalName}}</span>
+                      <span ng-if="!file.originalName">{{$index+1}}</span>
+                    </div>
+                  </a>
+                  
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

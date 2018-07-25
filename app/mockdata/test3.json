@@ -1,0 +1,23 @@
+[
+  {"name": "Usuarios","ngClass": "","uiSref": "index.user","iClass": "fa fa-users","uiSrefSctive": "active","faArrow": "","subitems": []},
+  {"name": "Lead Management","ngClass": "","uiSref": "index","iClass": "fa fa-star","faArrow": "fa arrow","hasSubitems": true,
+    "subitems":
+    [{"nameChild": "Nuevos Leads","ngClass": "","uiSref": "index.leads","actions": "Parameter"},
+      {"nameChild": "Seguimiento de Leads","ngClass": "","uiSref": "index.leads-follow-up","actions": "Create"},
+      {"nameChild": "Nube","ngClass": "","uiSref": "index.leads-upload-file","actions": "Create"},
+      {"nameChild": "Clientes","ngClass": "","uiSref": "index.main","actions": "Create"}]},
+  {"name": "Clientes/Doctores","ngClass": "","uiSref": "index.main","iClass": "fa fa-medkit","faArrow": "fa arrow","hasSubitems": true,
+    "subitems":
+    [{"nameChild": "Cubículos","ngClass": "","uiSref": "index.cubicles","actions": "Parameter"},
+      {"nameChild": "Agendar una Cita","ngClass": "","uiSref": "index.doctors-appt","actions": "Parameter"},
+      {"nameChild": "Calendario global","ngClass": "","uiSref": "index.allcubicles","actions": "Create"},
+      {"nameChild": "Mi Calendario","ngClass": "","uiSref": "index.usercubicles","actions": "Create"},
+      {"nameChild": "Finanzas/Historial","ngClass": "","uiSref": "index.doctors-finances","actions": "Parameter"}]},
+  {"name": "Reportes","ngClass": "","uiSref": "index","iClass": "fa fa-files-o","faArrow": "fa arrow","hasSubitems": true,
+    "subitems":
+    [{"nameChild": "Clientes","ngClass": "","uiSref": "index.reportes","actions": "Parameter"},
+      {"nameChild": "Leads","ngClass": "","uiSref": "index.reportes","actions": "Create"},
+      {"nameChild": "Cobranza","ngClass": "","uiSref": "index.reportes","actions": "Create"}]},
+  {"name": "Acceso a Puertas","ngClass": "","uiSref": "index","iClass": "fa fa-credit-card","faArrow": "fa arrow","hasSubitems": true,
+    "subitems":
+    [{"nameChild": "Control de Accesos","ngClass": "","uiSref": "index.reportes","actions": "Parameter"}]}]

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Inicio",
+    "ngClass": "",
+    "href": "index.html",
+    "iClass": "fa fa-home",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Usuarios",
+    "ngClass": "",
+    "uiSref": "index.user",
+    "iClass": "fa fa-users",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Vehículos",
+    "ngClass": "",
+    "uiSref": "index.car",
+    "iClass": "fa fa-car",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Técnicos",
+    "ngClass": "",
+    "uiSref": "index.technician",
+    "iClass": "fa fa-wrench",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Tarjetas de Gas",
+    "ngClass": "",
+    "uiSref": "index.gasCard",
+    "iClass": "fa fa-credit-card",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Tarjetas de Peajes",
+    "ngClass": "",
+    "uiSref": "index.pikeCard",
+    "iClass": "fa fa-credit-card-alt",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Monitoreos",
+    "ngClass": "",
+    "uiSref": "index.monitoring",
+    "iClass": "fa fa-search",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Reportes",
+    "ngClass": "",
+    "uiSref": "index.report",
+    "iClass": "fa fa-files-o",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  }
+]

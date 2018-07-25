@@ -1,0 +1,146 @@
+<div class="inmodal">
+  <form role="form" name="vm.chargeGasCardForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{vm.action}} Carga de Combustible</h4>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-xs-6">
+          <date-validator input-name="leavingDate" label="FECHA DE BAJA" form="vm.chargeGasCardForm"
+                          model="vm.chargeGasCard.leavingDate"
+                          required="true"></date-validator>
+        </div>
+        <div class="col-xs-6">
+          <date-validator input-name="chargeDate" label="FECHA DE CARGA" form="vm.chargeGasCardForm"
+                          model="vm.chargeGasCard.chargeDate"
+                          required="true"></date-validator>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-4">
+          <input-validator input-name="nameGas" label="GASOLINERA (NOMBRE)" form="vm.chargeGasCardForm" model="vm.chargeGasCard.nameGas"
+                           required="true"
+                           min-length="2" max-length="100"></input-validator>
+        </div>
+        <div class="col-xs-4">
+          <input-validator input-name="numLitters" label="LITROS" form="vm.chargeGasCardForm" model="vm.chargeGasCard.numLitters"
+                           required="true"
+                           max-length="20" restrict="double"></input-validator>
+        </div>
+        <div class="col-xs-4">
+          <input-validator input-name="costGas" label="PRECIO DE GASOLINA (1 Lt)" form="vm.chargeGasCardForm" model="vm.chargeGasCard.costGas"
+                           required="true"
+                           max-length="20" restrict="double"></input-validator>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-3">
+          <label>KM ANTERIOR</label>
+          <input name="kmPrevious" type="text" class="form-control" ng-model="vm.chargeGasCard.kmPrevious" disabled><br>
+        </div>
+        <div class="col-xs-3">
+          <input-validator input-name="kmCurrent" label="KM ACTUAL" form="vm.chargeGasCardForm" model="vm.chargeGasCard.kmCurrent"
+                           required="true"
+                           max-length="20" restrict="double"></input-validator>
+        </div>
+        <div class="col-xs-3" ng-class="vm.efficiencyError == true ? 'has-error' : ''">
+          <label>KM RECORRIDOS</label>
+          <input name="kmTours" type="text" class="form-control" ng-model="vm.chargeGasCard.kmTours" disabled>
+        </div>
+        <div class="col-xs-3" ng-class="vm.efficiencyError == true ? 'has-error' : ''">
+          <label>RENDIMIENTO</label>
+          <input name="efficiency" type="text" class="form-control" ng-model="vm.chargeGasCard.efficiency" disabled>
+        </div>
+      </div>
+
+
+      <small class="text-danger" ng-show="vm.efficiencyError">Verifique los datos ingresados.</small>
+
+
+      <div class="row">
+        <div class="col-xs-6">
+          <select-validator input-name="wayPay" label="FORMA DE PAGO" form="vm.chargeGasCardForm" list="vm.wayPayList"
+                            model="vm.chargeGasCard.wayPay" required="true"
+                            option-label="name"></select-validator>
+        </div>
+        <div class="col-xs-6" ng-if="vm.chargeGasCard.wayPay.name == 'TARJETA EFECTIVALE'">
+          <autocomplete-validator input-name="gasCard" label="TARJETA DE GAS" autocomplete="folio"
+                                  form="vm.chargeGasCardForm" model="vm.chargeGasCard.gasCard"
+                                  list="vm.gasCardList"></autocomplete-validator>
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-6">
+          <label>MONTO</label>
+          <input name="amount" type="text" class="form-control" ng-model="vm.chargeGasCard.amount | number:2" disabled><br>
+        </div>
+        <div class="col-xs-6" ng-if="vm.chargeGasCard.wayPay.id != CONSTANTS.WAYPAYGAS.EFECTIVALE">
+          <input-validator input-name="numInvoice" label="No. FACTURA" form="vm.chargeGasCardForm" model="vm.chargeGasCard.numInvoice"
+                           restrict="numeric" max-length="20"></input-validator>
+        </div>
+
+      </div>
+      <br>
+
+      <div class="row" ng-if="vm.efficiencyAlert50">
+        <div class="col-xs-6 col-xs-offset-3">
+          <button type="button" class="btn btn-danger pull-right" style="height: 40px; width: 40px" data-toggle="tooltip" data-placement="top" title="Cerrar"
+                  ng-click="vm.efficiencyAlert50 = false">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="panel panel-danger">
+            <div class="panel-heading text-center">
+              Ingrese Datos de Usuario Administrador
+
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="input-group" ng-class="vm.userNull == true ? 'has-error' : ''">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <input type="email" class="form-control" placeholder="Correo Electrónico" name="user"
+                         ng-model="vm.user.user" ng-required="true">
+                </div>
+                <div class="m-t-xs" ng-show="vm.chargeGasCardForm.user.$error.required">
+                  <small class="text-danger">Ingrese un usuario.</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group" ng-class="vm.passwordNull == true ? 'has-error' : ''">
+                  <span class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </span>
+                  <input type="password" class="form-control" placeholder="Contraseña" name="password"
+                         ng-model="vm.user.password" ng-required="true">
+                </div>
+                <div class="m-t-xs" ng-show="vm.chargeGasCardForm.password.$error.required">
+                  <small class="text-danger">Ingrese una contraseña.</small>
+                </div>
+              </div>
+              <div class="m-t-xs" ng-show="vm.userError">
+                <small class="text-danger">Datos incorrectos.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

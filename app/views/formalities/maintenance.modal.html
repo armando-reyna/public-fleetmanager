@@ -1,0 +1,43 @@
+<div class="inmodal">
+    <form role="form" name="vm.maintenanceForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Mantenimiento</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.maintenance.vehicle.id" disabled><br>
+
+            <input-validator input-name="folio" label="FOLIO" form="vm.maintenanceForm" model="vm.maintenance.folio" required="true"
+                             min-length="4" max-length="20" restrict="alphanumeric"></input-validator>
+
+            <date-validator input-name="dateIncome" label="FECHA DE INGRESO" form="vm.maintenanceForm"
+                            model="vm.maintenance.incomeDate"
+                            required="true"></date-validator>
+
+            <date-validator input-name="dateDelivery" label="FECHA DE ENTREGA" form="vm.maintenanceForm"
+                             model="vm.maintenance.deliveryDate"
+                             required="true"></date-validator>
+
+
+            <input-validator input-name="kmCurrent" label="KILOMETRAJE" form="vm.maintenanceForm" model="vm.maintenance.kmCurrent" required="true"
+                             min-length="2" max-length="20" restrict="numeric"></input-validator>
+
+
+            <select-validator input-name="type" label="TIPO" form="vm.maintenanceForm" list="vm.maintenanceType"
+                              model="vm.maintenance.maintenanceType" required="true"
+                              option-label="name"></select-validator>
+
+            <input-validator input-name="name" label="NOMBRE (AGENCIA, MECANICO, TALLER)" form="vm.maintenanceForm" model="vm.maintenance.name" required="true"
+                             min-length="2" max-length="49"></input-validator>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

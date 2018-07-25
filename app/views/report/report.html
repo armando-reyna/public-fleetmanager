@@ -1,0 +1,349 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12 animated fadeInRight">
+            <div class="ibox-content">
+
+                <h3><i class="fa fa-files-o"></i>&nbsp;Reportes</h3>
+
+                <div class="ibox-content">
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="font-normal">Reporte</label>
+                                <br>
+                                <div class="btn-group full-width">
+                                    <button class="btn btn-default dropdown-toggle full-width" type="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa" aria-hidden="true" ng-class="vm.selectedReport.class" ng-show="vm.selectedReport"></i>
+                                        {{vm.selectedReport.title ? vm.selectedReport.title : 'Selecione un reporte'}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu full-width">
+                                        <li ng-if="vm.user.torage">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.TORAGE)">
+                                                {{CONSTANTS.REPORTS.TORAGE.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.insurance">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.INSURANCE)">
+                                                {{CONSTANTS.REPORTS.INSURANCE.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.maintenance">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.MAINTENANCE)">
+                                                {{CONSTANTS.REPORTS.MAINTENANCE.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.cleaning">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.CLEANING)">
+                                                {{CONSTANTS.REPORTS.CLEANING.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.infringement">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.INFRINGEMENT)">
+                                                {{CONSTANTS.REPORTS.INFRINGEMENT.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.circulationCard">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.CIRCULATIONCARD)">
+                                                {{CONSTANTS.REPORTS.CIRCULATIONCARD.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.role.id != CONSTANTS.ROLES.SERVI">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.GASCARD)">
+                                                {{CONSTANTS.REPORTS.GASCARD.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.chargeGas">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.CHARGEGASCARD)">
+                                                {{CONSTANTS.REPORTS.CHARGEGASCARD.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.role.id != CONSTANTS.ROLES.SERVI && vm.user.role.id != CONSTANTS.ROLES.ASISGAS && vm.user.role.id != CONSTANTS.ROLES.OTHER">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.PIKECARD)">
+                                                {{CONSTANTS.REPORTS.PIKECARD.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.chargePike">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.CHARGEPIKECARD)">
+                                                {{CONSTANTS.REPORTS.CHARGEPIKECARD.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.tenure">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.TENURE)">
+                                                {{CONSTANTS.REPORTS.TENURE.title}}
+                                            </a>
+                                        </li>
+                                        <li ng-if="vm.user.verification">
+                                            <a ng-click="vm.setReport(CONSTANTS.REPORTS.VERIFICATION)">
+                                                {{CONSTANTS.REPORTS.VERIFICATION.title}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" ng-if="vm.selectedReport.id != null" style="padding-top: 22px">
+                            <label class="font-normal"></label>
+                            <button class="btn btn-primary" type="button" ng-click="vm.generateReportExcel()">
+                                GENERAR REPORTE
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.selectedReport && vm.showFilter == true;">
+                        <div class="col-xs-12">
+                            <b>Seleccione filtros :</b>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.TORAGE.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Entrada
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Salida
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.INSURANCE.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Inicio
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Vencimiento
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.MAINTENANCE.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Ingreso
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Entrega
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.INFRINGEMENT.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Infracción
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Imposición
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row space-top-10 space-left-2" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.INFRINGEMENT.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionSecondOne()" ng-class="vm.styleSecondOne">
+                                No Pagada
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionSecondTwo()" ng-class="vm.styleSecondTwo">
+                                Pagada
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.CIRCULATIONCARD.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Expedición
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Vencimiento
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionOne()" ng-class="vm.styleOne">
+                                Fecha de Baja
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionTwo()" ng-class="vm.styleTwo">
+                                Fecha de Carga
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && (vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id || vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEPIKECARD.id || vm.selectedReport.id == CONSTANTS.REPORTS.PIKECARD.id) ">
+                        <div class="col-xs-12">
+                            <div class="row" >
+                                <div class="col-xs-2" ng-if="vm.selectedReport && ((vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id)||(vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEPIKECARD.id))">
+                                    <button class="btn" type="button" ng-click="vm.optionFourthOne()" ng-class="vm.styleFourthOne">
+                                        Forma de Pago
+                                    </button>
+                                </div>
+                                <div class="col-xs-2" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.PIKECARD.id">
+                                    <button class="btn" type="button" ng-click="vm.optionFourthOne()" ng-class="vm.styleFourthOne">
+                                        Tipo de Tarjeta
+                                    </button>
+                                </div>
+                                <div class="col-xs-2" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id">
+                                    <button class="btn" type="button" ng-click="vm.optionFourthTwo()" ng-class="vm.styleFourthTwo">
+                                        Tarjeta de Gas
+                                    </button>
+                                </div>
+                                <div class="col-xs-2" ng-if="vm.selectedReport && ( vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEPIKECARD.id || vm.selectedReport.id == CONSTANTS.REPORTS.PIKECARD.id)">
+                                    <button class="btn" type="button" ng-click="vm.optionFourthTwo()" ng-class="vm.styleFourthTwo">
+                                        Tarjeta Peaje
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.TENURE.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionThirdOne()" ng-class="vm.styleThirdOne">
+                                Fecha de Trámite
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionThirdTwo()" ng-class="vm.styleThirdTwo">
+                                Ejercicio Fiscal (Año)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row space-top-10" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.VERIFICATION.id">
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionThirdOne()" ng-class="vm.styleThirdOne">
+                                Fecha de Trámite
+                            </button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn" type="button" ng-click="vm.optionThirdTwo()" ng-class="vm.styleThirdTwo">
+                                Año y Semestre
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row" ng-if="vm.selectedReport && vm.searchFor == false">
+
+                        <div class="col-md-3 col-no-padding-right">
+                            <label>
+                                Fecha Inicio<strong class="red">*</strong>
+                            </label>
+                            <div class="input-group date date-time">
+                                <input id="fechaInicio" type="datetime" class="form-control" date-time ng-model="vm.from"
+                                       view="date" auto-close="true" min-view="date" format="DD-MM-YYYY">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-no-padding-right">
+                            <label>
+                                Fecha Fin<strong class="red">*</strong>
+                            </label>
+                            <div class="input-group date date-time">
+                                <input id="fechaFin" type="datetime" class="form-control" date-time ng-model="vm.to"
+                                       view="date" auto-close="true" min-view="date" format="DD-MM-YYYY">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <form role="form" name="vm.carForm">
+                        <div class="row" ng-if="vm.searchFor == true">
+                            <div class="col-xs-3">
+                                <year-validator input-name="year" label="AÑO" form="vm.carForm"
+                                                model="vm.year"
+                                                required="true"></year-validator>
+                            </div>
+                            <div class="col-xs-3" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.VERIFICATION.id">
+                                <select-validator input-name="verificationPeriod" label="SEMESTRE" form="vm.carForm" list="vm.verificationPeriod"
+                                                  model="vm.period"
+                                                  option-label="name"></select-validator>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4" ng-if="vm.selectedReport && vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id && vm.searchForCard == false">
+                                <select-validator input-name="wayPay" label="Forma de Pago" form="vm.carForm" list="vm.wayPayGasList"
+                                                  model="vm.wayPayGas" option-label="name"></select-validator>
+                            </div>
+                            <div class="col-xs-4" ng-if="vm.selectedReport && ( (vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEGASCARD.id  && vm.searchForCard == true) || (vm.selectedReport.id == CONSTANTS.REPORTS.GASCARD.id) )">
+                                <autocomplete-validator input-name="gasCard" label="Tarjeta de Gas" autocomplete="folio"
+                                                        form="vm.carForm" model="vm.gasCard"
+                                                        list="vm.gasCardList"></autocomplete-validator>
+                            </div>
+                            <div class="col-xs-4" ng-if="vm.selectedReport && ( vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEPIKECARD.id  && vm.searchForCard == false)">
+                                <select-validator input-name="wayPay" label="Forma de Pago" form="vm.carForm" list="vm.wayPayPikeList"
+                                                  model="vm.wayPayPike" option-label="name"></select-validator>
+                            </div>
+                            <div class="col-xs-4" ng-if="vm.selectedReport && ( vm.selectedReport.id == CONSTANTS.REPORTS.PIKECARD.id  && vm.searchForCard == false)">
+                                <select-validator input-name="pikeCardType" label="TIPO DE TARJETA" form="vm.carForm" list="vm.pikeCardTypeList"
+                                                  model="vm.pikeCardType"
+                                                  option-label="name"></select-validator>
+                            </div>
+                            <div class="col-xs-4" ng-if="vm.selectedReport && ( (vm.selectedReport.id == CONSTANTS.REPORTS.CHARGEPIKECARD.id  && vm.searchForCard == true) || (vm.selectedReport.id == CONSTANTS.REPORTS.PIKECARD.id && vm.searchForCard == true) )">
+                                <autocomplete-validator input-name="gasCard" label="Tarjeta Peaje" autocomplete="folio"
+                                                        form="vm.carForm" model="vm.pikeCard"
+                                                        list="vm.pikeCardList"></autocomplete-validator>
+                            </div>
+                            <div class="col-xs-3" ng-if="vm.selectedReport && ( (vm.selectedReport.id != CONSTANTS.REPORTS.GASCARD.id) && (vm.selectedReport.id != CONSTANTS.REPORTS.PIKECARD.id) ) ">
+                                <autocomplete-validator input-name="vehicle" label="Vehículo (No. Económico)" autocomplete="search"
+                                                        form="vm.carForm" model="vm.vehicle"
+                                                        list="vm.vehicleList"></autocomplete-validator>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row" ng-if="vm.vehicle.id != null">
+                        <div class="col-xs-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Datos del Vehículo</div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        &nbsp;&nbsp;&nbsp;<b>No. Económico:</b>&nbsp;&nbsp;{{vm.vehicle.id}}
+                                    </div>
+                                    <div class="row">
+                                        &nbsp;&nbsp;&nbsp;<b>Placas:</b>&nbsp;&nbsp;{{vm.vehicle.plates}}
+                                    </div>
+                                    <div class="row">
+                                        &nbsp;&nbsp;&nbsp;<b>Técnico:</b>&nbsp;&nbsp;{{vm.vehicle.technician.name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="spacer-md"></div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

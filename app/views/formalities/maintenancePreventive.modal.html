@@ -1,0 +1,64 @@
+<div class="inmodal">
+  <form role="form" name="vm.preventiveForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">Mantenimientos Programados</h4>
+    </div>
+    <div class="modal-body">
+
+      <button type="button" class="btn btn-white pull-right" data-toggle="tooltip" data-placement="top" title="Agregar"
+              ng-click="vm.new()">
+        <i class="fa fa-plus icon-sm"></i>
+      </button>
+
+      <table class="table table-striped table-hover">
+        <thead>
+        <th>Tipo</th>
+        <th>Km</th>
+        <th>Notificado</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="preventive in vm.maintenancePreventiveList">
+          <td>{{preventive.type.name}}</td>
+          <td>{{preventive.km}}</td>
+          <td>
+            <label class="label label-primary" ng-show="preventive.notification">Si</label>
+            <label class="label label-danger" ng-hide="preventive.notification">No</label>
+          </td>
+          <td class="text-center"><i class="fa fa-pencil icon-sm" ng-click="vm.edit(preventive)"></i></td>
+          <td class="text-center"><i class="fa fa-times icon-sm" ng-click="vm.remove(preventive)"></i></td>
+        </tr>
+        <tr ng-show="!vm.maintenancePreventiveList || vm.maintenancePreventiveList.length == 0">
+          <td colspan="5">Aún no hay mantenimientos programados asociadas a este vehículo.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div ng-show="vm.showForm">
+
+        <h3>{{vm.subtitle}} Mantenimiento Programado</h3>
+
+        <select-validator input-name="type" label="TIPO" form="vm.preventiveForm" list="vm.maintenanceTypeList"
+                          model="vm.preventive.type" required="true"
+                          option-label="name"></select-validator>
+
+        <input-validator input-name="km" label="KILOMETRAJE" form="vm.preventiveForm" model="vm.preventive.km"
+                         required="true"
+                         min-length="2" max-length="20" restrict="numeric"></input-validator>
+
+        <textarea-validator input-name="observation" label="OBSERVACIONES" form="vm.preventiveForm" model="vm.preventive.observation"
+                            required="true"></textarea-validator>
+
+        <button class="btn btn-sm btn-white" type="button" ng-click="vm.cancel()"><strong>Cancelar</strong></button>
+        <button class="btn btn-sm btn-primary" type="submit"><strong>Guardar</strong></button>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.close()">Aceptar</button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

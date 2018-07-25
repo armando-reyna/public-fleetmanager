@@ -1,0 +1,26 @@
+<div class="inmodal">
+    <form role="form" name="vm.technicianForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Técnico</h4>
+        </div>
+        <div class="modal-body">
+
+            <input-validator input-name="name" label="Nombre" form="vm.technicianForm" model="vm.technician.name" required="true"
+                             ng-minlength="4" maxlength="100"></input-validator>
+
+            <input-validator input-name="telephone" label="Teléfono" form="vm.technicianForm" model="vm.technician.telephone" required="true"
+                             ng-minlength="4" maxlength="15"></input-validator>
+
+            <textarea-validator input-name="address" label="Dirección" form="vm.technicianForm" model="vm.technician.address" required="true"
+                             ng-minlength="4" maxlength="300"></textarea-validator>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

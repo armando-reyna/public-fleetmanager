@@ -1,0 +1,36 @@
+language: node_js
+sudo: true
+node_js:
+- '8'
+branches:
+  only:
+  - qc
+  - prod
+  - climatic-prod
+  - effekt-prod
+script:
+- ci/./build.sh
+cache:
+  directories:
+  - node_modules
+before_install:
+- npm install -g grunt-cli
+- npm install -g bower
+- bower install
+- openssl aes-256-cbc -K $encrypted_45545b05ceac_key -iv $encrypted_45545b05ceac_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 deploy_rsa
+- ssh-add deploy_rsa
+install: npm install
+deploy:
+  skip_cleanup: true
+addons:
+  ssh_known_hosts:
+  - airsoftware.solutions
+  - flotasirel.com.mx
+  - autosclimatic.com.mx
+  - vehiculoseffekt.com.mx
+notifications:
+  on_success: change
+  on_failure: always

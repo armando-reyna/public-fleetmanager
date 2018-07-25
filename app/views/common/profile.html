@@ -1,0 +1,27 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-9">
+    <h2>Mi Perfil</h2>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <div class="contact-box center-version">
+
+        <a href="">
+          <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+          <h3 class="m-b-xs"><strong>{{vm.user.name}}</strong></h3>
+          <div class="font-bold">{{vm.user.user}}</div>
+          <div ng-hide="vm.user.role.id == CONSTANTS.ROLES.CLIENT">{{vm.user.role.name}}</div>
+          <address class="m-t-md" ng-show="vm.user.role.id == CONSTANTS.ROLES.CLIENT">
+            <strong>{{vm.user.membership.type.name}}</strong><br>
+            Caducidad: {{vm.user.membership.formattedExpirationDate}}<br>
+            Horas Membresía: {{vm.user.membershipHrs}}<br>
+            Horas Restantes: {{vm.user.membershipHrs}}<br>
+          </address>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

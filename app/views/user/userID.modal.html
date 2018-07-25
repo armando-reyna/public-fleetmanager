@@ -1,0 +1,46 @@
+<div class="inmodal">
+  <div class="col-xs-8 col-xs-offset-2" style="padding-top: 40%">
+    <button type="button" class="btn btn-danger pull-right" style="height: 40px; width: 40px" data-toggle="tooltip" data-placement="top" title="Cerrar"
+            ng-click="vm.cancel()">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="panel panel-success">
+      <div class="panel-heading text-center">
+        Ingrese Usuario Administrador
+
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="input-group" ng-class="vm.userNull == true ? 'has-error' : ''">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </span>
+            <input type="email" class="form-control" placeholder="Correo Electrónico" name="user"
+                   ng-model="vm.user.user" ng-required="true">
+          </div>
+          <div class="m-t-xs" ng-show="vm.userError">
+            <small class="text-danger">Ingrese un usuario.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group" ng-class="vm.passwordNull == true ? 'has-error' : ''">
+                  <span class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </span>
+            <input type="password" class="form-control" placeholder="Contraseña" name="password"
+                   ng-model="vm.user.password" ng-required="true">
+          </div>
+          <div class="m-t-xs" ng-show="vm.passError">
+            <small class="text-danger">Ingrese una contraseña.</small>
+          </div>
+        </div>
+        <div class="m-t-xs" ng-show="vm.loginError">
+          <small class="text-danger">Datos incorrectos.</small>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-sm btn-default" type="submit" ng-click="vm.login()"><strong>Aceptar</strong></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

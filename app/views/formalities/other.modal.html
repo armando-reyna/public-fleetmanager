@@ -1,0 +1,40 @@
+<div class="inmodal">
+    <form role="form" name="vm.otherForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Otro tramite</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.other.vehicle.id" disabled><br>
+
+            <input-validator input-name="name" label="NOMBRE" form="vm.otherForm" model="vm.other.name" required="true"
+                             ng-minlength="4" maxlength="40" ></input-validator>
+
+            <textarea-validator input-name="description" label="DESCRIPCIÓN" form="vm.otherForm" model="vm.other.description"
+                                required="true"></textarea-validator>
+
+            <date-validator input-name="startDate" label="FECHA INICIO" form="vm.otherForm"
+                            model="vm.other.startDate"
+                            required="true"></date-validator>
+
+            <date-validator input-name="endDate" label="FECHA FIN" form="vm.otherForm"
+                            model="vm.other.endDate"
+                            required="true"></date-validator>
+
+            <input-validator input-name="cost" label="COSTO PRIMA" form="vm.otherForm" model="vm.other.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+            <br><br>NOTIFICAR (SI / NO)&nbsp;&nbsp;<input type="checkbox" ng-model="vm.other.notification">
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

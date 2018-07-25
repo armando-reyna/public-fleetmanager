@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Inicio",
+    "ngClass": "",
+    "href": "index.html",
+    "iClass": "fa fa-home",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Vehículos",
+    "ngClass": "",
+    "uiSref": "index.car",
+    "iClass": "fa fa-car",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Tarjetas de Gas",
+    "ngClass": "",
+    "uiSref": "index.gasCard",
+    "iClass": "fa fa-credit-card",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  },
+  {
+    "name": "Reportes",
+    "ngClass": "",
+    "uiSref": "index.report",
+    "iClass": "fa fa-files-o",
+    "uiSrefSctive": "active",
+    "faArrow": ""
+  }
+]

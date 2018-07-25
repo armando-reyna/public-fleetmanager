@@ -1,0 +1,48 @@
+<div class="inmodal">
+  <form role="form" name="vm.chargePikeCardForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{vm.action}} Peaje</h4>
+    </div>
+    <div class="modal-body">
+
+      <date-validator input-name="date" label="FECHA" form="vm.chargePikeCardForm"
+                          model="vm.chargePikeCard.date"
+                          required="true"></date-validator>
+
+
+      <input-validator input-name="nameStall" label="CASETA (NOMBRE)" form="vm.chargePikeCardForm" model="vm.chargePikeCard.nameStall"
+                           required="true"
+                           min-length="2" max-length="100"></input-validator>
+
+
+      <div class="row">
+        <div class="col-xs-6">
+          <select-validator input-name="wayPay" label="FORMA DE PAGO" form="vm.chargePikeCardForm" list="vm.wayPayList"
+                            model="vm.chargePikeCard.wayPay" required="true"
+                            option-label="name"></select-validator>
+        </div>
+        <div class="col-xs-6" ng-if="vm.mostrarTarjetas">
+          <autocomplete-validator input-name="pikeCard" label="TARJETA" autocomplete="folio"
+                                  form="vm.chargePikeCardForm" model="vm.chargePikeCard.pikeCard"
+                                  list="vm.pikeCardList" required="true"></autocomplete-validator>
+        </div>
+
+      </div>
+
+
+      <input-validator input-name="amount" label="MONTO" form="vm.chargePikeCardForm" model="vm.chargePikeCard.amount"
+                           required="true"
+                           max-length="20" restrict="double"></input-validator>
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

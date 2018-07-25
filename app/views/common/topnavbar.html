@@ -1,0 +1,35 @@
+<div class="row border-bottom">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <span minimaliza-sidebar></span>
+      <img src="img/header_161x100.png" class="header-logo">
+    </div>
+    <ul class="nav navbar-top-links navbar-right">
+      <li ng-if="main.token">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span>{{main.token.name}} | {{main.token.user}} | {{main.token.role.name}} |</span>
+      </li>
+      <li ng-if="main.token" uib-dropdown on-toggle="main.toggled(open)">
+        <a class="count-info" href uib-dropdown-toggle ng-click="main.resetNotifsCount()">
+          <i class="fa fa-bell"></i> <span class="label label-primary">{{ notifications | countUnreadNotifs}}</span>
+        </a>
+        <ul class="dropdown-alerts" uib-dropdown-menu>
+          <li ng-repeat-start="notification in notifications.slice().reverse()" ng-class="notification.unread ? 'unread' : 'read'">
+            <a href="">
+              <div ng-class="notification.foreground">
+                <i class="fa fa-envelope" ng-class="notification.icon"></i> {{notification.message}}
+              </div>
+            </a>
+          </li>
+          <li class="divider" ng-repeat-end ng-show="!$last"></li>
+        </ul>
+      </li>
+      <li ng-if="main.token">
+        <a ng-click="main.logout()">
+          <i class="fa fa-sign-out"></i> Salir
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+</div>

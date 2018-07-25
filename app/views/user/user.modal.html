@@ -1,0 +1,89 @@
+<div class="inmodal">
+  <form role="form" name="vm.userForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{vm.action}} Usuario</h4>
+    </div>
+    <div class="modal-body">
+
+      <input-validator input-name="name" label="Nombre" form="vm.userForm" model="vm.user.name" required="true"
+                       ng-minlength="4" maxlength="50"></input-validator>
+
+      <input-validator input-name="user" type="email" label="Email" form="vm.userForm" model="vm.user.user"
+                       required="true" ng-minlength="4" maxlength="50"></input-validator>
+
+      <select-validator input-name="role"
+                        label="Rol" form="vm.userForm" list="vm.userRoles" model="vm.user.role"
+                        required="true" option-label="name"></select-validator>
+      <br>
+      <div ng-if="vm.user.role.id == CONSTANTS.ROLES.ASIS">
+      <label>Seleccione para otorgar permisos: </label><br><br>
+        <div class="row text-center">
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleTorage" ng-click="vm.checkTorage()">
+              Almacenajes
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleInsurance" ng-click="vm.checkInsurance()">
+              Seguros
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleInfringement" ng-click="vm.checkInfringement()">
+              Infracciones
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleMaintenance" ng-click="vm.checkMaintenance()">
+              Mantenimientos
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row text-center">
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleTenure" ng-click="vm.checkTenure()">
+              Tenencias
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleVerification" ng-click="vm.checkVerification()">
+              Verificaciones
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleCirculationCard" ng-click="vm.checkCirculationCard()">
+              T. Circulación
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleOther" ng-click="vm.checkOther()">
+              Otros
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row text-center">
+          <div class="col-xs-3 col-xs-offset-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleChargeGas" ng-click="vm.checkChargeGas()">
+              C. Combustibles
+            </button>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-block" ng-class="vm.styleChargePike" ng-click="vm.checkChargePike()">
+              C. Peajes
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

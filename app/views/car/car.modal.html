@@ -1,0 +1,229 @@
+<div class="inmodal">
+  <form role="form" name="vm.carForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{vm.action}} Vehículo</h4>
+    </div>
+    <div class="modal-body">
+
+      <div class="tabs-container">
+
+        <uib-tabset class="tabs-left" active="vm.activeTab">
+          <uib-tab heading="DATOS DE FACTURA" select="vm.selectTab($event, vm.activeTab, 0)"
+                   disable="!vm.tabs[0].enable">
+            <div class="panel-body">
+              <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+              <input name="id" type="text" class="form-control" ng-model="vm.econo" disabled><br>
+
+
+              <input-validator input-name="folio" label="FOLIO FACTURA" form="vm.carForm" model="vm.car.folio"
+                                   required="true"
+                                   min-length="4" max-length="20" restrict="alphanumeric"></input-validator>
+
+              <date-validator input-name="expeditionDate" label="FECHA DE EXPEDICIÓN" form="vm.carForm"
+                                  model="vm.car.expeditionDate"
+                                  required="true"></date-validator>
+
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="invoiceValue" label="VALOR FACTURA" form="vm.carForm" model="vm.car.invoiceValue"
+                                   required="true"
+                                   max-length="20" restrict="double"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <input-validator input-name="plates" label="PLACAS O PERMISO" form="vm.carForm" model="vm.car.plates" required="true"
+                                   min-length="5" max-length="8" restrict="alphanumeric"></input-validator>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-xs-5">
+                  <select-validator input-name="vehicleSticky" label="ENGOMADO" form="vm.carForm" list="vm.vehicleSticky"
+                                    model="vm.car.sticky" required="true"
+                                    option-label="name"></select-validator>
+                </div>
+                <div  ng-show="vm.car.sticky.color" class="col-xs-1 col-xs-offset-1" style="background-color: {{vm.car.sticky.color}}; margin-top: 20px; height: 40px; border: 2px solid #C4C3C2">
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="serie" label="No. DE SERIE" form="vm.carForm" model="vm.car.serie"
+                                   required="true"
+                                   min-length="17" max-length="17" restrict="alphanumeric"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <input-validator input-name="motor" label="No. DE MOTOR" form="vm.carForm" model="vm.car.motor"
+                                   min-length="4" max-length="30" required="true" restrict="alphanumeric"></input-validator>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <autocomplete-validator input-name="make" label="MARCA" autocomplete="name"
+                                          form="vm.carForm" model="vm.car.make"
+                                          list="vm.makeList" search-str="vm.car.originalMake" required="true"></autocomplete-validator>
+                </div>
+                <div class="col-xs-6">
+                  <autocomplete-validator input-name="model" label="SUBMARCA" autocomplete="name"
+                                          form="vm.carForm" model="vm.car.model"
+                                          list="vm.modelList" search-str="vm.car.originalModel" required="true"></autocomplete-validator>
+                </div>
+              </div>
+
+
+
+            </div>
+          </uib-tab>
+          <uib-tab heading="ESPECIFICACIONES" select="vm.selectTab($event, vm.activeTab, 1)"
+                   disable="!vm.tabs[1].enable">
+            <div class="panel-body" ng-if="vm.activeTab >= 1">
+
+              <select-validator input-name="vehicleType" label="TIPO" form="vm.carForm" list="vm.vehicleTypes"
+                                model="vm.car.type" required="true"
+                                option-label="name"></select-validator>
+
+              <input-validator input-name="color" label="COLOR EXTERIOR" form="vm.carForm" model="vm.car.color" required="true"
+                                   min-length="4" max-length="50"></input-validator>
+
+              <input-validator input-name="year" label="MODELO (AÑO)" form="vm.carForm" model="vm.car.year" required="true"
+                                   min-length="4" max-length="4" restrict="numeric"></input-validator>
+
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="tons" label="TONELADAS" form="vm.carForm" model="vm.car.tons" required="true"
+                                   min-length="1" max-length="5" restrict="double"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <select-validator input-name="vehicleCylinders" label="CILINDROS" form="vm.carForm" list="vm.vehicleCylinders"
+                                    model="vm.car.cylinders" required="true"
+                                    option-label="cylinders"></select-validator>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="kmInit" label="KILOMETRAJE INICIAL" form="vm.carForm" model="vm.car.kmInit"
+                                   required="true"
+                                   max-length="20" restrict="double"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <input-validator input-name="kmTours" label="KILOMETROS RECORRIDOS" form="vm.carForm" model="vm.car.kmTours"
+                                   required="true"
+                                   max-length="20" restrict="double"></input-validator>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="litters" label="LITROS" form="vm.carForm" model="vm.car.litters" required="true"
+                                   min-length="1" max-length="3" restrict="numeric"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <input-validator input-name="efficiency" label="RENDIMIENTO (KM/L)" form="vm.carForm" model="vm.car.efficiency" required="true"
+                                   min-length="1" max-length="5" restrict="double"></input-validator>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <input-validator input-name="capacity" label="CAPACIDAD (No. DE PERSONAS)" form="vm.carForm" model="vm.car.capacity" required="true"
+                                   min-length="1" max-length="1" restrict="numeric"></input-validator>
+                </div>
+                <div class="col-xs-6">
+                  <select-validator input-name="vehicleClass" label="CLASE" form="vm.carForm" list="vm.vehicleClass"
+                                    model="vm.car.classs" required="true"
+                                    option-label="name"></select-validator>
+                </div>
+              </div>
+
+
+            </div>
+          </uib-tab>
+          <uib-tab heading="USO Y ASIGNACIÓN" select="vm.selectTab($event, vm.activeTab, 2)"
+                   disable="!vm.tabs[2].enable">
+            <div class="panel-body" ng-if="vm.activeTab >= 2">
+
+              <select-validator input-name="vehicleEnergyType" label="COMBUSTIBLE" form="vm.carForm" list="vm.vehicleEnergyType"
+                                    model="vm.car.energyType" required="true"
+                                    option-label="name"></select-validator>
+
+              <select-validator input-name="vehicleUse" label="USO" form="vm.carForm" list="vm.vehicleUse"
+                                    model="vm.car.use" required="true"
+                                    option-label="name"></select-validator>
+
+              <select-validator input-name="vehicleOrigin" label="ORIGEN" form="vm.carForm" list="vm.vehicleOrigin"
+                                    model="vm.car.origin" required="true"
+                                    option-label="name"></select-validator>
+
+              <input-validator input-name="repuve" label="REPUVE" form="vm.carForm" model="vm.car.repuve"
+                                   min-length="17" max-length="17" restrict="alphanumeric"></input-validator>
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <autocomplete-validator input-name="technician" label="TÉCNICO RESPONSABLE" autocomplete="name"
+                                          form="vm.carForm" model="vm.car.technician"
+                                          list="vm.technicianList" required="true"></autocomplete-validator>
+                </div>
+                <div class="col-xs-6">
+                  <autocomplete-validator input-name="zone" label="ZONA ASIGNADA (CATÁLOGO DE ZONAS)" autocomplete="name"
+                                          form="vm.carForm" model="vm.car.zone"
+                                          list="vm.vehicleZone" required="true"></autocomplete-validator>
+                </div>
+              </div>
+
+
+              <br>EN ARRENDAMIENTO (SI / NO)&nbsp;&nbsp;<input type="checkbox" ng-model="vm.car.lease"> &nbsp;&nbsp;&nbsp;
+
+                  OPCIÓN A COMPRA (SI / NO)&nbsp;&nbsp;<input type="checkbox" ng-model="vm.car.purchase">
+
+            </div>
+          </uib-tab>
+          <uib-tab heading="TARJETAS" select="vm.selectTab($event, vm.activeTab, 3)"
+                   disable="!vm.tabs[3].enable">
+            <div class="panel-body" ng-if="vm.activeTab >= 3">
+
+              <autocomplete-validator input-name="gasCard" label="TARJETA DE GAS" autocomplete="folio"
+                                      form="vm.carForm" model="vm.car.gasCard"
+                                      list="vm.gasCardList"></autocomplete-validator>
+
+              <autocomplete-validator input-name="iaveCard" label="TARJETA IAVE" autocomplete="folio"
+                                          form="vm.carForm" model="vm.car.iaveCard"
+                                          list="vm.iaveCardList"></autocomplete-validator>
+
+              <autocomplete-validator input-name="televiaCard" label="TARJETA TELEVIA" autocomplete="folio"
+                                          form="vm.carForm" model="vm.car.televiaCard"
+                                          list="vm.televiaCardList"></autocomplete-validator>
+
+              <autocomplete-validator input-name="telepassCard" label="TARJETA TELEPASS" autocomplete="folio"
+                                          form="vm.carForm" model="vm.car.telepassCard"
+                                          list="vm.telepassCardList"></autocomplete-validator>
+
+              <autocomplete-validator input-name="otherCard" label="OTRA TARJETA DE PEAJE" autocomplete="folio"
+                                          form="vm.carForm" model="vm.car.otherCard"
+                                          list="vm.otherCardList"></autocomplete-validator>
+
+            </div>
+          </uib-tab>
+        </uib-tabset>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" ng-show="vm.activeTab > 0" type="button" ng-click="vm.prevStep()"><strong>Anterior</strong>
+      </button>
+      <button class="btn btn-sm btn-primary" ng-hide="vm.isFinalStep" type="button" ng-click="vm.nextStep()"><strong>Siguiente</strong>
+      </button>
+      <button class="btn btn-sm btn-primary" ng-if="vm.isFinalStep" type="submit"><strong>Guardar</strong></button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

@@ -1,0 +1,61 @@
+<div class="inmodal">
+    <form role="form" name="vm.infringementForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Infracción</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.infringement.vehicle.id" disabled><br>
+
+            <input-validator input-name="folio" label="FOLIO" form="vm.infringementForm" model="vm.infringement.folio"
+                             required="true"
+                             min-length="4" max-length="8" restrict="alphanumeric"></input-validator>
+
+            <div class="row col-xs-12"><label>FECHA DE INFRACCIÓN</label></div>
+            <div class="row">
+              <div class="col-xs-6">
+                <date-validator input-name="dateInfringement" form="vm.infringementForm"
+                                model="vm.infringement.infringementDate"
+                                required="true"></date-validator>
+              </div>
+              <div class="col-xs-6">
+                <div uib-timepicker style="background: none" ng-model="vm.infringement.infringementDate"
+                     hour-step="vm.hstep" minute-step="vm.mstep" ng-required="true"></div>
+                <div class="m-t-xs">
+                  <small class="text-danger" ng-show="vm.errorHora">Ingrese HORA.</small>
+                </div>
+              </div>
+            </div>
+
+
+            <textarea-validator input-name="reason" label="MOTIVO" form="vm.infringementForm" model="vm.infringement.reason"
+                             required="true"></textarea-validator>
+
+            <autocomplete-validator input-name="technician" label="TÉCNICO RESPONSABLE" autocomplete="name"
+                                    form="vm.infringementForm" model="vm.infringement.technician"
+                                    list="vm.technicianList" required="true"></autocomplete-validator>
+
+            <date-validator input-name="dateTaxation" label="FECHA DE IMPOSICIÓN (FECHA CON DESCUENTO)" form="vm.infringementForm"
+                            model="vm.infringement.taxationDate"
+                            required="true"></date-validator>
+
+            <input-validator input-name="cost" label="COSTO TOTAL" form="vm.infringementForm" model="vm.infringement.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+            <br>PAGADA (SI / NO)&nbsp;&nbsp;<input type="checkbox" ng-model="vm.infringement.state"><br><br><br>
+
+            <input-validator ng-show="vm.infringement.state" input-name="impo" label="IMPORTE PAGADO (COSTO YA CON DESCUENTO)" form="vm.infringementForm" model="vm.infringement.impo"
+                             max-length="20" restrict="double"></input-validator>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

@@ -1,0 +1,55 @@
+<div class="inmodal">
+    <form role="form" name="vm.verificationForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Verificación</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.verification.vehicle.id" disabled><br>
+
+            <input-validator input-name="folio" label="FOLIO" form="vm.verificationForm" model="vm.verification.folio"
+                             required="true"
+                             min-length="4" max-length="20" restrict="alphanumeric"></input-validator>
+
+            <date-validator input-name="date" label="FECHA DE TRAMITE" form="vm.verificationForm"
+                            model="vm.verification.date"
+                            required="true"></date-validator>
+
+
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <year-validator input-name="verificationYear" label="AÑO" form="vm.verificationForm"
+                                    model="vm.verification.year"
+                                    required="true"></year-validator>
+                </div>
+                <div class="col-xs-6">
+                    <select-validator input-name="verificationPeriod" label="SEMESTRE" form="vm.verificationForm" list="vm.verificationPeriod"
+                                      model="vm.verification.verificationPeriod" required="true"
+                                      option-label="name"></select-validator>
+                </div>
+            </div>
+
+
+            <select-validator input-name="verificationHologram" label="HOLOGRAMA" form="vm.verificationForm" list="vm.verificationHologram"
+                              model="vm.verification.verificationHologram" required="true"
+                              option-label="name"></select-validator>
+
+            <input-validator input-name="name" label="NOMBRE VERIFICENTRO" form="vm.verificationForm" model="vm.verification.name" required="true"
+                             ng-minlength="4" maxlength="100"></input-validator>
+
+            <input-validator input-name="cost" label="COSTO PRIMA" form="vm.verificationForm" model="vm.verification.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

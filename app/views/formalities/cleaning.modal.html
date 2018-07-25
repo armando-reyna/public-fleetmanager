@@ -1,0 +1,33 @@
+<div class="inmodal">
+    <form role="form" name="vm.cleaningForm" novalidate ng-submit="vm.save()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{vm.action}} Limpieza</h4>
+        </div>
+        <div class="modal-body">
+
+            <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+            <input name="id" type="text" class="form-control" ng-model="vm.cleaning.vehicle.id" disabled><br>
+
+            <date-validator input-name="date" label="FECHA" form="vm.cleaningForm"
+                            model="vm.cleaning.date"
+                            required="true"></date-validator>
+
+            <textarea-validator input-name="observation" label="OBSERVACIONES" form="vm.cleaningForm" model="vm.cleaning.observation"
+                                required="true"></textarea-validator>
+
+
+            <input-validator input-name="cost" label="COSTO" form="vm.cleaningForm" model="vm.cleaning.cost"
+                             required="true"
+                             max-length="20" restrict="double"></input-validator>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+            <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+            </button>
+        </div>
+    </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>

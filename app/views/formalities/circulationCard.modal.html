@@ -1,0 +1,36 @@
+<div class="inmodal">
+  <form role="form" name="vm.circulationCardForm" novalidate ng-submit="vm.save()">
+    <div class="modal-header">
+      <h4 class="modal-title">{{vm.action}} Tarjeta de Circulación</h4>
+    </div>
+    <div class="modal-body">
+
+      <label>No. ECONÓMICO (AUTOMÁTICO)</label>
+      <input name="id" type="text" class="form-control" ng-model="vm.circulationCard.vehicle.id" disabled><br>
+
+      <input-validator input-name="folio" label="FOLIO" form="vm.circulationCardForm" model="vm.circulationCard.folio"
+                       required="true"
+                       min-length="4" max-length="20" restrict="alphanumeric"></input-validator>
+
+      <date-validator input-name="expeditionDate" label="FECHA DE EXPEDICIÓN" form="vm.circulationCardForm"
+                      model="vm.circulationCard.expeditionDate"
+                      required="true"></date-validator>
+
+      <date-validator input-name="dueDate" label="FECHA DE VENCIMIENTO" form="vm.circulationCardForm"
+                      model="vm.circulationCard.dueDate"
+                      required="true"></date-validator>
+
+      <input-validator input-name="cost" label="COSTO" form="vm.circulationCardForm" model="vm.circulationCard.cost"
+                       required="true"
+                       max-length="20" restrict="double"></input-validator>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" ng-click="vm.cancel()">Cancelar</button>
+      <button class="btn btn-sm btn-primary" type="submit" ng-disabled="vm.enableSaveBtn"><strong>Guardar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<loading-bar ng-show="vm.loading"></loading-bar>
